@@ -9,7 +9,7 @@
 # If using NVIDIA HPC SDK on a CPU...
 CXX=nvc++
 CXXFLAGS=--c++23 -O2 -march=native -stdpar=multicore
-LDFLAGS=-lblas
+LDFLAGS=-lblas #-static-libgcc -static-libstdc++
 
 # If using NVIDIA HPC SDK to run parallel algorithms on a GPU
 # (this needs NVIDIA GPU hardware to run the executables)...
@@ -17,7 +17,7 @@ LDFLAGS=-lblas
 #CXXFLAGS=--c++23 -O2 -march=native -stdpar=gpu
 #LDFLAGS=-cudalib=cublas
 
-all: generate_points.exe basic.exe
+all: generate_points.exe basic.exe task.exe
 
 clean:
 	rm -f *.exe
