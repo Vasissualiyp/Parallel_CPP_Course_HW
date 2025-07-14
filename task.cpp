@@ -72,16 +72,17 @@ int main(int argc, char *argv[])
         }
   );
 
+  // Quick toggle between one-line-per-point and all-points-single-line output
+  bool single_line_out = true; 
+                                
   // Print output data
-  bool single_line_out = false;
   for (auto v_i : v) {
       cout << v_i;
-      if single_line_out
+      if (single_line_out)
           cout << " ";
       else
           cout << endl;
   }
-
   cout << endl;
 
   return 0;
