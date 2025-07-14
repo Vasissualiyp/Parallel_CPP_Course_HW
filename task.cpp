@@ -50,9 +50,18 @@ int main(int argc, char *argv[])
   cin >> n;
   cout << n << endl;
   if (cin.fail()) {
-      cout << "Unable to read n (number of points)" << endl;
-      return 4;
+    cout << "Unable to read n (number of points)" << endl;
+    return 4;
   }
+  v.reserve(n);
+
+  // Read in the numbers
+  REAL read_value;
+  for (int i = 0; i < n; ++i) {
+    cin >> read_value;
+    v.push_back(read_value);
+  }
+  cout << v << endl;
 
   auto p  = pointN(3.F,2.F);
   auto fp = pointN<REAL,2>{};
