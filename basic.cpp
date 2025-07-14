@@ -22,8 +22,6 @@ int main(int argc, char *argv[])
       cerr << "FATAL: Aborting since <number_of_degrees> is invalid.\n";
       return 2;
     }
-    else
-      cout << "The value " << deg << " was passed on the command line.\n";
   }
 
   // create variables that own the data...

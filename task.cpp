@@ -22,22 +22,25 @@ int main(int argc, char *argv[])
     return 1;
   } else if (argc == 2) { // Only obtain the angle of rotation
     // read in command line argument as a float with error detection...
-    float const deg{ strtof(argv[1], nullptr) };
-    if (deg == HUGE_VALF)
-    {
-      cerr << "FATAL: Aborting since <number_of_degrees> is invalid.\n";
-      return 2;
-    }
     cout << "Normal number of arguments" << endl;
+
   } else { // Only obtain the angle of rotation
-    cerr << "So many arguments!" << endl;
+    cerr << "Too many arguments!" << endl;
     cerr << "USAGE: " << argv[0] << " <number_of_degrees>\n";
     return 3;
   }
+  const float deg{ strtof(argv[1], nullptr) };
+  if (deg == HUGE_VALF)
+  {
+    cerr << "FATAL: Aborting since <number_of_degrees> is invalid.\n";
+    return 2;
+  }
   //=============================================
+  
 
+  auto radians = degrees_to_radians(REAL{deg});
   // create variables that own the data...
-  auto r = make_rot2x2_matrix(degrees_to_radians(REAL{90}));
+  auto r = make_rot2x2_matrix(radians);
   auto p = pointN(3.F,2.F);
   auto fp = pointN<REAL,2>{};
 
