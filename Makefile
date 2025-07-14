@@ -17,7 +17,8 @@ LDFLAGS=-lblas #-static-libgcc -static-libstdc++
 #CXXFLAGS=--c++23 -O2 -march=native -stdpar=gpu
 #LDFLAGS=-cudalib=cublas
 
-all: generate_points.exe basic.exe task.exe
+#all: generate_points.exe basic.exe task.exe
+all: generate_points.exe task.exe
 
 clean:
 	rm -f *.exe

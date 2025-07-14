@@ -56,12 +56,15 @@ int main(int argc, char *argv[])
   v.reserve(n);
 
   // Read in the numbers
-  REAL read_value;
   for (int i = 0; i < n; ++i) {
-    cin >> read_value;
-    v.push_back(read_value);
+    pointN<REAL, 2> pt;
+    cin >> pt;
+    v.push_back(pt);
   }
-  cout << v << endl;
+
+  for (auto v_i : v)
+      cout << v_i << " ";
+  cout << endl;
 
   auto p  = pointN(3.F,2.F);
   auto fp = pointN<REAL,2>{};
