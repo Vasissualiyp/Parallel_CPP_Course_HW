@@ -62,24 +62,21 @@ int main(int argc, char *argv[])
     v.push_back(pt);
   }
 
+  // Perform the transformation
+  transform(execution::par_unseq, v.begin(), v.end(), v.begin(),
+        [r](pointN<float,2> const& p)
+        {
+          pointN<float,2> result;
+          LINALG_NAMESPACE::matrix_vector_product(r.mdspan(), p.mdspan(), result.mdspan());
+          return result;
+        }
+  );
+
+  // Print output data
   for (auto v_i : v)
-      cout << v_i << " ";
+      cout << v_i << endl;
   cout << endl;
 
-  auto p  = pointN(3.F,2.F);
-  auto fp = pointN<REAL,2>{};
-
-  // create mdspans for those we want to exist longer than a single 
-  // expression...
-  auto pm = p.mdspan();
-  auto fpm = fp.mdspan();
-
-  // compute fp = r*p to rotate p about the origin...
-  matrix_vector_product(r.mdspan(), pm, fpm);
-
-  // output results...
-  cout << "original point: (" << pm(0) << ',' << pm(1) << ")\n";
-  cout << "final point: (" << fpm(0) << ',' << fpm(1) << ")\n";
   return 0;
 }
 
