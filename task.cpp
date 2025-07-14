@@ -73,8 +73,15 @@ int main(int argc, char *argv[])
   );
 
   // Print output data
-  for (auto v_i : v)
-      cout << v_i << endl;
+  bool single_line_out = false;
+  for (auto v_i : v) {
+      cout << v_i;
+      if single_line_out
+          cout << " ";
+      else
+          cout << endl;
+  }
+
   cout << endl;
 
   return 0;
