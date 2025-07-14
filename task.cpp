@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
   // define REAL type alias to float...
   using REAL = float;
   
+
   // CLI arguments handling block ===============
   if (argc < 2) { // Output how-to use the program error message
     cerr << "USAGE: " << argv[0] << " <number_of_degrees>\n";
@@ -27,21 +28,33 @@ int main(int argc, char *argv[])
   } else { // Only obtain the angle of rotation
     cerr << "Too many arguments!" << endl;
     cerr << "USAGE: " << argv[0] << " <number_of_degrees>\n";
-    return 3;
+    return 2;
   }
+  // argc == 2 case
   const float deg{ strtof(argv[1], nullptr) };
   if (deg == HUGE_VALF)
   {
     cerr << "FATAL: Aborting since <number_of_degrees> is invalid.\n";
-    return 2;
+    return 3;
   }
   //=============================================
   
 
+  // Declare rotation matrix
   auto radians = degrees_to_radians(REAL{deg});
-  // create variables that own the data...
   auto r = make_rot2x2_matrix(radians);
-  auto p = pointN(3.F,2.F);
+
+  // Declare and read the size of numbers' vector
+  vector<pointN<REAL,2>> v;
+  long long n;
+  cin >> n;
+  cout << n << endl;
+  if (cin.fail()) {
+      cout << "Unable to read n (number of points)" << endl;
+      return 4;
+  }
+
+  auto p  = pointN(3.F,2.F);
   auto fp = pointN<REAL,2>{};
 
   // create mdspans for those we want to exist longer than a single 
